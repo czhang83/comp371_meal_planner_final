@@ -33,4 +33,14 @@ public class Dish {
         this.dinner = dinner;
         this.dessert = dessert;
     }
+
+    // list out type + \n
+    public String getTypes(){
+        String meal_types = "";
+        if (this.breakfast == 1) meal_types = meal_types.concat("Breakfast\n");
+        if (this.lunch == 1) meal_types = meal_types.concat("Lunch\n");
+        if (this.dinner == 1) meal_types = meal_types.concat("Dinner\n");
+        if (this.dessert == 1) meal_types = meal_types.concat("Dessert\n");
+        return meal_types;
+    }
 }
