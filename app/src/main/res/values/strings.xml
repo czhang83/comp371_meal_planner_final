@@ -6,6 +6,7 @@
     <string name="title_setting">Setting</string>
 
     <string name="button_generate">Generate</string>
+    <string name="pantry_only">Use the ingredients in your pantry only</string>
 
     <string name="vegetable">Vegetable</string>
     <string name="meat">Meat</string>
@@ -34,5 +35,21 @@
         <item>Lunch</item>
         <item>Dinner</item>
         <item>Dessert</item>
+    </string-array>
+
+    <string-array name="dish_type">
+        <item>Vegetable</item>
+        <item>Meat</item>
+        <item>Seafood</item>
+        <item>Staple</item>
+        <item>Drink</item>
+        <item>Dessert</item>
+        <item>Fruit</item>
+    </string-array>
+
+    <string-array name="status">
+        <item>Regular</item>
+        <item>Low</item>
+        <item>None</item>
     </string-array>
 </resources>

@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.mealplanner.R;
@@ -26,6 +28,7 @@ public class HomeFragment extends Fragment {
 
     public TextView textView_date;
     public Button button_generate;
+    public SwitchCompat switch_pantry_only;
 
     public Spinner spinnerMealType;
 
@@ -41,6 +44,8 @@ public class HomeFragment extends Fragment {
     public String dessertCount;
     public String fruitCount;
 
+    public boolean pantry_only;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -48,6 +53,14 @@ public class HomeFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_home, container, false);
         textView_date = root.findViewById(R.id.textView_weekday);
         button_generate = root.findViewById(R.id.button_generate);
+        switch_pantry_only = root.findViewById(R.id.switch_pantry_only);
+
+        switch_pantry_only.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                pantry_only = b;
+            }
+        });
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -103,6 +116,7 @@ public class HomeFragment extends Fragment {
         Log.d("spinner", mealType);
         Log.d("spinner", "Vegetable count: " + vegetableCount);
         Log.d("spinner", "Fruit count: " + fruitCount);
+        Log.d("spinner", String.valueOf(pantry_only));
     }
 
     public void toastError(String text){
