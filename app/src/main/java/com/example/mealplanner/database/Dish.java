@@ -34,6 +34,19 @@ public class Dish {
         this.dessert = dessert;
     }
 
+    public Dish(String dish_name, String type, boolean breakfast, boolean lunch, boolean dinner, boolean dessert){
+        this.dish_name = dish_name;
+        this.type = type;
+        this.breakfast = boolToInt(breakfast);
+        this.lunch = boolToInt(lunch);
+        this.dinner = boolToInt(dinner);
+        this.dessert = boolToInt(dessert);
+    }
+
+    public int boolToInt(boolean b){
+        if (b) return 1;
+        return 0;
+    }
     // list out type + \n
     public String getTypes(){
         String meal_types = "";

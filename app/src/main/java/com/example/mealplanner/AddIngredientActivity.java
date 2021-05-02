@@ -51,7 +51,7 @@ public class AddIngredientActivity extends AppCompatActivity {
             public void onClick(View view) { //TODO if ingredient already exist, toast
                 String ingredientName = editText_ingredient_name.getText().toString();
                 if (ingredientName.isEmpty()){
-                    toastError("Please enter an ingredient name");
+                    toastError(getString(R.string.no_ingredient_name));
                 } else{
                     appViewModel.insertIngredient(new Ingredient(ingredientName, ingredientStatus));
                     finish();
