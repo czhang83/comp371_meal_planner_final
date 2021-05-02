@@ -5,6 +5,9 @@
     <string name="title_pantry">Pantry</string>
     <string name="title_setting">Setting</string>
 
+    <string name="ingredient">Ingredient</string>
+    <string name="status">Status</string>
+
     <string name="button_generate">Generate</string>
     <string name="pantry_only">Use the ingredients in your pantry only</string>
 

@@ -15,6 +15,7 @@ public class AddDishActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_dish);
         appViewModel = new ViewModelProvider(this).get(AppViewModel.class);
 
         //appViewModel.insertDish(new Dish("test", "breakfast", 1, 0, 0, 0));

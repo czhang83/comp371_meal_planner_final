@@ -23,4 +23,8 @@ public class DishIngredient {
     @ColumnInfo(name = "ingredient")
     public String ingredient;
 
+    public DishIngredient(String dish_name, String ingredient){
+        this.dish_name = dish_name;
+        this.ingredient = ingredient;
+    }
 }

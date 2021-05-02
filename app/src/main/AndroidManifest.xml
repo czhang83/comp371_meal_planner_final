@@ -21,6 +21,9 @@
         <activity
             android:name=".AddDishActivity"
             android:label="Add Dish"/>
+        <activity
+            android:name=".AddIngredientActivity"
+            android:label="Add Ingredient"/>
     </application>
 
 </manifest>

@@ -15,4 +15,9 @@ public class Ingredient {
     @ColumnInfo(name = "status")
     public String status;
 
+    public Ingredient(String ingredient, String status){
+        this.ingredient = ingredient;
+        this.status = status;
+    }
+
 }

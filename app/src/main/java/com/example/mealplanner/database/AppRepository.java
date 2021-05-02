@@ -18,11 +18,18 @@ public class AppRepository {
     AppRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         dishDAO = db.dishDAO();
+        ingredientDAO = db.ingredientDAO();
+        dishIngredientDAO = db.dishIngredientDAO();
+
         allDishes = dishDAO.getAllDishes();
+        allIngredients = ingredientDAO.getAllIngredient();
     }
 
     LiveData<List<Dish>> getAllDishes() {
         return allDishes;
+    }
+    LiveData<List<Ingredient>> getAllIngredients(){
+        return allIngredients;
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
@@ -30,6 +37,12 @@ public class AppRepository {
     void insertDish(Dish dish) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             dishDAO.insertAllDishes(dish);
+        });
+    }
+
+    void insertIngredient(Ingredient ingredient) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            ingredientDAO.insertIngredient(ingredient);
         });
     }
 }
