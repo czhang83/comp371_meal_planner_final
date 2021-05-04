@@ -16,8 +16,8 @@ public class AppRepository {
     private LiveData<List<Dish>> allDishes;
     private LiveData<List<Ingredient>> allIngredients;
 
-    AppRepository(Application application) {
-        AppDatabase db = AppDatabase.getDatabase(application);
+    AppRepository() {
+        AppDatabase db = AppApplication.getDatabase();
         dishDAO = db.dishDAO();
         ingredientDAO = db.ingredientDAO();
         dishIngredientDAO = db.dishIngredientDAO();

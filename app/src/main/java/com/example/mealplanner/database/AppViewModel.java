@@ -17,7 +17,7 @@ public class AppViewModel extends AndroidViewModel {
 
     public AppViewModel (Application application) {
         super(application);
-        repository = new AppRepository(application);
+        repository = AppApplication.getRepository();
 
         allDishes = repository.getAllDishes();
         allIngredients = repository.getAllIngredients();
