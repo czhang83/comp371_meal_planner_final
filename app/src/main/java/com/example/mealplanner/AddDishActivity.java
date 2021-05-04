@@ -1,6 +1,7 @@
 package com.example.mealplanner;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,10 +13,19 @@ import android.widget.Toast;
 
 import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.database.Dish;
+import com.example.mealplanner.database.DishIngredient;
+import com.example.mealplanner.database.Ingredient;
+import com.example.mealplanner.recyclerview.DishAdapter;
+import com.example.mealplanner.recyclerview.IngredientCheckboxAdapter;
+
+import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AddDishActivity extends AppCompatActivity {
     private AppViewModel appViewModel;
@@ -27,6 +37,7 @@ public class AddDishActivity extends AppCompatActivity {
     private CheckBox checkBox_lunch;
     private CheckBox checkBox_dinner;
     private CheckBox checkBox_dessert;
+    private RecyclerView recyclerView_ingredient_checkboxes;
 
     private String dishType;
 
@@ -55,11 +66,31 @@ public class AddDishActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner_dish_type.setAdapter(dishTypeAdapter);
 
+        recyclerView_ingredient_checkboxes = findViewById(R.id.recyclerView_ingredient_checkboxes);
+
+        // create recycler adapter
+        IngredientCheckboxAdapter adapter = new IngredientCheckboxAdapter(appViewModel.getAllIngredients().getValue());
+        recyclerView_ingredient_checkboxes.setAdapter(adapter);
+        recyclerView_ingredient_checkboxes.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView_ingredient_checkboxes.setHasFixedSize(true);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView_ingredient_checkboxes.addItemDecoration(itemDecoration);
+
+        // ingredient should not change
+        appViewModel.getAllIngredients().observe(this, ingredients -> {
+            adapter.updateIngredients(ingredients);
+        });
+
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //TODO if ingredient already exist, toast
                 String dishName = editText_dish_name.getText().toString();
+                ArrayList<DishIngredient> dishIngredients = new ArrayList<>();
+                for(Ingredient ingredient : adapter.getChecked()){
+                    dishIngredients.add(new DishIngredient(dishName, ingredient.ingredient));
+                }
+
                 boolean breakfast = checkBox_breakfast.isChecked();
                 boolean lunch = checkBox_lunch.isChecked();
                 boolean dinner = checkBox_dinner.isChecked();
@@ -69,7 +100,8 @@ public class AddDishActivity extends AppCompatActivity {
                 } else if(!breakfast && !lunch && !dinner && !dessert){
                     toastError(getString(R.string.no_dish_type));
                 }else{
-                    appViewModel.insertDish(new Dish(dishName, dishType, breakfast, lunch, dinner, dessert));
+                    appViewModel.insertDishWithDishIngredient(new Dish(dishName, dishType, breakfast, lunch, dinner, dessert),
+                            dishIngredients);
                     finish();
                 }
             }

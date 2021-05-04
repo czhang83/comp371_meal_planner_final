@@ -2,6 +2,7 @@ package com.example.mealplanner.database;
 
 import android.app.Application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -43,6 +44,23 @@ public class AppRepository {
     void insertIngredient(Ingredient ingredient) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             ingredientDAO.insertIngredient(ingredient);
+        });
+    }
+
+    void insertDishIngredient(DishIngredient dishIngredient){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            dishIngredientDAO.insertDishIngredient(dishIngredient);
+        });
+    }
+
+    // when first creating a dish with dishIngredient
+    // insert dishIngredient after dish is inserted - foreign key constraint
+    void insertDishWithDishIngredient(Dish dish, ArrayList<DishIngredient> dishIngredients){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            dishDAO.insertAllDishes(dish);
+            for (DishIngredient dishIngredient : dishIngredients){
+                dishIngredientDAO.insertDishIngredient(dishIngredient);
+            }
         });
     }
 }

@@ -17,6 +17,8 @@ public interface DishIngredientDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertDishIngredient(DishIngredient... dishIngredients);
 
+
     @Delete
     void deleteDishIngredient(DishIngredient dishIngredient);
+
 }

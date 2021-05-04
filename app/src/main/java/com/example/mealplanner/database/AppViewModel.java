@@ -2,6 +2,7 @@ package com.example.mealplanner.database;
 
 import android.app.Application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -32,5 +33,13 @@ public class AppViewModel extends AndroidViewModel {
 
     public void insertIngredient(Ingredient ingredient){
         repository.insertIngredient(ingredient);
+    }
+
+    public void insertDishIngredient(DishIngredient dishIngredient){
+        repository.insertDishIngredient(dishIngredient);
+    }
+
+    public void insertDishWithDishIngredient(Dish dish, ArrayList<DishIngredient> dishIngredients){
+        repository.insertDishWithDishIngredient(dish, dishIngredients);
     }
 }
