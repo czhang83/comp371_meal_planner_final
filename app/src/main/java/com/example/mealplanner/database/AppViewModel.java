@@ -42,4 +42,12 @@ public class AppViewModel extends AndroidViewModel {
     public void insertDishWithDishIngredient(Dish dish, ArrayList<DishIngredient> dishIngredients){
         repository.insertDishWithDishIngredient(dish, dishIngredients);
     }
+
+    public LiveData<Dish> getDishByName(String dish_name){
+        return repository.getDishByName(dish_name);
+    }
+
+    public LiveData<List<Ingredient>> getDishIngredients(String dish_name){
+        return repository.getDishIngredients(dish_name);
+    }
 }

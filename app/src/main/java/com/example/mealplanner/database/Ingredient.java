@@ -20,4 +20,12 @@ public class Ingredient {
         this.status = status;
     }
 
+    public String getIngredient(){
+        return this.ingredient;
+    }
+
+    public String getStatus(){
+        return this.status;
+    }
+
 }

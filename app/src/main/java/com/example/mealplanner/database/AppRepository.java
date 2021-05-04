@@ -63,4 +63,12 @@ public class AppRepository {
             }
         });
     }
+
+    LiveData<Dish> getDishByName (String dish_name){
+        return dishDAO.getDishByName(dish_name);
+    }
+
+    LiveData<List<Ingredient>> getDishIngredients(String dish_name){
+        return dishIngredientDAO.getDishIngredients(dish_name);
+    }
 }

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Meal Planner</string>
+    <string name="title_add_dish">Add Dish</string>
+    <string name="title_add_ingredient">Add Ingredient</string>
+    <string name="title_dish_detail">Dish Detail</string>
     <string name="title_home">Home</string>
     <string name="title_dishes">Dishes</string>
     <string name="title_pantry">Pantry</string>
@@ -17,6 +20,9 @@
 
     <string name="ingredient_name">Ingredient name</string>
     <string name="dish_name">Dish name</string>
+
+    <string name="type">Type: </string>
+    <string name="meal">Meal: </string>
 
 
     <string name="vegetable">Vegetable</string>

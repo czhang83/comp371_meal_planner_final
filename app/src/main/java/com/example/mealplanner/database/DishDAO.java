@@ -14,6 +14,9 @@ public interface DishDAO {
     @Query("SELECT * FROM dishes_table")
     LiveData<List<Dish>> getAllDishes();
 
+    @Query("SELECT * FROM dishes_table WHERE :name Like dish_name")
+    LiveData<Dish> getDishByName(String name);
+
     @Query("SELECT * FROM dishes_table WHERE :name LIKE dish_type")
     LiveData<List<Dish>> getDishesByType(String name);
 

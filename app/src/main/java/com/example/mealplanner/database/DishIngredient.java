@@ -27,4 +27,13 @@ public class DishIngredient {
         this.dish_name = dish_name;
         this.ingredient = ingredient;
     }
+
+    public String getDish_name(){
+        return this.dish_name;
+    }
+
+    @NotNull
+    public String getIngredient() {
+        return ingredient;
+    }
 }

@@ -11,8 +11,8 @@ import androidx.room.Query;
 
 @Dao
 public interface DishIngredientDAO {
-    @Query("SELECT ingredient FROM dish_ingredient WHERE :name LIKE dish_name")
-    LiveData<List<String>> getDishIngredients(String name);
+    @Query("SELECT ingredient, status FROM dish_ingredient NATURAL JOIN ingredient_table WHERE :name LIKE dish_name")
+    LiveData<List<Ingredient>> getDishIngredients(String name);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertDishIngredient(DishIngredient... dishIngredients);

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mealplanner.DishDetailActivity;
 import com.example.mealplanner.R;
 import com.example.mealplanner.database.Dish;
 
@@ -40,11 +41,22 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         Dish dish = dishes.get(position);
 
         holder.textView_item_dish_name.setText(dish.dish_name);
-        holder.textView_item_dish_type.setText(dish.type);
-        holder.textView_item_meal_type.setText(dish.getTypes());
+        holder.textView_item_dish_type.setText(dish.dish_type);
+        holder.textView_item_meal_type.setText(dish.getMealTypes());
+
 
         // TODO load image
         //Picasso.get().load(dish.getImageUrl()).into(holder.imageView_beer);
+
+        // open to a detail page
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DishDetailActivity.class);
+                intent.putExtra("dish_name", dish.dish_name);
+                view.getContext().startActivity(intent);
+            }
+        });
 
 
     }
@@ -75,6 +87,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         TextView textView_item_dish_type;
         TextView textView_item_meal_type;
         ImageView imageView_dish;
+        View itemView;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -82,6 +95,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
             textView_item_dish_type = itemView.findViewById(R.id.textView_item_dish_type);
             textView_item_meal_type = itemView.findViewById(R.id.textView_item_meal_type);
             imageView_dish = itemView.findViewById(R.id.imageView_dish);
+            this.itemView = itemView;
         }
 
     }
