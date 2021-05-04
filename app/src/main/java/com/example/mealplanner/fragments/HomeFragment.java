@@ -55,12 +55,7 @@ public class HomeFragment extends Fragment {
         button_generate = root.findViewById(R.id.button_generate);
         switch_pantry_only = root.findViewById(R.id.switch_pantry_only);
 
-        switch_pantry_only.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                pantry_only = b;
-            }
-        });
+        switch_pantry_only.setOnCheckedChangeListener((compoundButton, b) -> pantry_only = b);
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
@@ -70,7 +65,7 @@ public class HomeFragment extends Fragment {
 
         // meal type spinner
         spinnerMealType = root.findViewById(R.id.spinner_meal_type);
-        spinnerMealTypeListener = new SpinnerMealTypeListener();
+        spinnerMealTypeListener = new SpinnerMealTypeListener(getResources().getStringArray(R.array.meal_type_database));
         spinnerMealType.setOnItemSelectedListener(spinnerMealTypeListener);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> mealTypeAdapter = ArrayAdapter.createFromResource(root.getContext(),
@@ -89,12 +84,7 @@ public class HomeFragment extends Fragment {
         declareCountSpinner(R.id.spinner_dessert_count);
         declareCountSpinner(R.id.spinner_fruit_count);
 
-        button_generate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getUserInput();
-            }
-        });
+        button_generate.setOnClickListener(view -> getUserInput());
 
         return root;
     }
@@ -129,21 +119,21 @@ public class HomeFragment extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             String count = adapterView.getItemAtPosition(i).toString();
-            switch (adapterView.getId()){
-                case R.id.spinner_vegetable_count:
-                    vegetableCount = count; break;
-                case R.id.spinner_meat_count:
-                    meatCount = count; break;
-                case R.id.spinner_seafood_count:
-                    seafoodCount = count; break;
-                case R.id.spinner_staple_count:
-                    stapleCount = count; break;
-                case R.id.spinner_drink_count:
-                    drinkCount = count; break;
-                case R.id.spinner_dessert_count:
-                    dessertCount = count; break;
-                case R.id.spinner_fruit_count:
-                    fruitCount = count; break;
+            int adapterViewId = adapterView.getId();
+            if (adapterViewId == R.id.spinner_vegetable_count) {
+                vegetableCount = count;
+            } else if (adapterViewId == R.id.spinner_meat_count) {
+                meatCount = count;
+            } else if (adapterViewId == R.id.spinner_seafood_count) {
+                seafoodCount = count;
+            } else if (adapterViewId == R.id.spinner_staple_count) {
+                stapleCount = count;
+            } else if (adapterViewId == R.id.spinner_drink_count) {
+                drinkCount = count;
+            } else if (adapterViewId == R.id.spinner_dessert_count) {
+                dessertCount = count;
+            } else if (adapterViewId == R.id.spinner_fruit_count) {
+                fruitCount = count;
             }
         }
 
@@ -154,11 +144,15 @@ public class HomeFragment extends Fragment {
     }
 
     class SpinnerMealTypeListener implements AdapterView.OnItemSelectedListener {
-
+        String[] itemValue;
+        // the English value that will get stored into the database when display is not in English
+        public SpinnerMealTypeListener(String[] itemValue){
+            this.itemValue = itemValue;
+        }
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            mealType = adapterView.getItemAtPosition(i).toString();
+            mealType = itemValue[i];
         }
 
         @Override

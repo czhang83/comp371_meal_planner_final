@@ -56,7 +56,8 @@ public class AddDishActivity extends AppCompatActivity {
         checkBox_dessert = findViewById(R.id.checkBox_dessert);
 
         // declare status spinner
-        SpinnerDishTypeListener spinnerDishTypeListener = new SpinnerDishTypeListener();
+        SpinnerDishTypeListener spinnerDishTypeListener = new SpinnerDishTypeListener(
+                getResources().getStringArray(R.array.dish_type_database));
         spinner_dish_type.setOnItemSelectedListener(spinnerDishTypeListener);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> dishTypeAdapter = ArrayAdapter.createFromResource(this,
@@ -77,33 +78,28 @@ public class AddDishActivity extends AppCompatActivity {
         recyclerView_ingredient_checkboxes.addItemDecoration(itemDecoration);
 
         // ingredient should not change
-        appViewModel.getAllIngredients().observe(this, ingredients -> {
-            adapter.updateIngredients(ingredients);
-        });
+        appViewModel.getAllIngredients().observe(this, adapter::updateIngredients);
 
 
-        button_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { //TODO if ingredient already exist, toast
-                String dishName = editText_dish_name.getText().toString();
-                ArrayList<DishIngredient> dishIngredients = new ArrayList<>();
-                for(Ingredient ingredient : adapter.getChecked()){
-                    dishIngredients.add(new DishIngredient(dishName, ingredient.ingredient));
-                }
+        button_add.setOnClickListener(view -> { //TODO if ingredient already exist, toast
+            String dishName = editText_dish_name.getText().toString();
+            ArrayList<DishIngredient> dishIngredients = new ArrayList<>();
+            for(Ingredient ingredient : adapter.getChecked()){
+                dishIngredients.add(new DishIngredient(dishName, ingredient.ingredient));
+            }
 
-                boolean breakfast = checkBox_breakfast.isChecked();
-                boolean lunch = checkBox_lunch.isChecked();
-                boolean dinner = checkBox_dinner.isChecked();
-                boolean dessert = checkBox_dessert.isChecked();
-                if (dishName.isEmpty()){
-                    toastError(getString(R.string.no_dish_name));
-                } else if(!breakfast && !lunch && !dinner && !dessert){
-                    toastError(getString(R.string.no_dish_type));
-                }else{
-                    appViewModel.insertDishWithDishIngredient(new Dish(dishName, dishType, breakfast, lunch, dinner, dessert),
-                            dishIngredients);
-                    finish();
-                }
+            boolean breakfast = checkBox_breakfast.isChecked();
+            boolean lunch = checkBox_lunch.isChecked();
+            boolean dinner = checkBox_dinner.isChecked();
+            boolean dessert = checkBox_dessert.isChecked();
+            if (dishName.isEmpty()){
+                toastError(getString(R.string.no_dish_name));
+            } else if(!breakfast && !lunch && !dinner && !dessert){
+                toastError(getString(R.string.no_dish_type));
+            }else{
+                appViewModel.insertDishWithDishIngredient(new Dish(dishName, dishType, breakfast, lunch, dinner, dessert),
+                        dishIngredients);
+                finish();
             }
         });
 
@@ -114,9 +110,16 @@ public class AddDishActivity extends AppCompatActivity {
     }
 
     class SpinnerDishTypeListener implements AdapterView.OnItemSelectedListener {
+
+        String[] itemValue;
+        // the English value that will get stored into the database when display is not in English
+        public SpinnerDishTypeListener(String[] itemValue){
+            this.itemValue = itemValue;
+        }
+
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            dishType = adapterView.getItemAtPosition(i).toString();
+            dishType = itemValue[i];
         }
 
         @Override

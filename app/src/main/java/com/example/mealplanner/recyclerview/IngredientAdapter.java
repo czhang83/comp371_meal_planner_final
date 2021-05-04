@@ -37,8 +37,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
         // populate data into the item through holder
         Ingredient ingredient = ingredients.get(position);
 
-        holder.textView_item_ingredient_name.setText(ingredient.ingredient);
-        holder.textView_item_ingredient_status.setText(ingredient.status);
+        holder.textView_item_ingredient_name.setText(ingredient.getIngredient());
+        holder.textView_item_ingredient_status.setText(ingredient.getStatus());
 
     }
 

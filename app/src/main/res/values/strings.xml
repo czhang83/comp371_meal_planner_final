@@ -35,6 +35,9 @@
     <string name="breakfast">Breakfast</string>
     <string name="lunch">Lunch</string>
     <string name="dinner">Dinner</string>
+    <string name="regular">Regular</string>
+    <string name="low">Low</string>
+    <string name="none">None</string>
 
     <string-array name="count">
         <item>0</item>
@@ -51,13 +54,38 @@
     </string-array>
 
     <string-array name="meal_type">
+        <item>@string/breakfast</item>
+        <item>@string/lunch</item>
+        <item>@string/dinner</item>
+        <item>@string/dessert</item>
+    </string-array>
+
+    <string-array name="dish_type">
+        <item>@string/vegetable</item>
+        <item>@string/meat</item>
+        <item>@string/seafood</item>
+        <item>@string/staple</item>
+        <item>@string/drink</item>
+        <item>@string/dessert</item>
+        <item>@string/fruit</item>
+    </string-array>
+
+    <string-array name="status">
+        <item>@string/regular</item>
+        <item>@string/low</item>
+        <item>@string/none</item>
+    </string-array>
+
+
+
+    <string-array name="meal_type_database">
         <item>Breakfast</item>
         <item>Lunch</item>
         <item>Dinner</item>
         <item>Dessert</item>
     </string-array>
 
-    <string-array name="dish_type">
+    <string-array name="dish_type_database">
         <item>Vegetable</item>
         <item>Meat</item>
         <item>Seafood</item>
@@ -67,7 +95,7 @@
         <item>Fruit</item>
     </string-array>
 
-    <string-array name="status">
+    <string-array name="status_database">
         <item>Regular</item>
         <item>Low</item>
         <item>None</item>

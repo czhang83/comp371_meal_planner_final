@@ -36,7 +36,7 @@ public class AddIngredientActivity extends AppCompatActivity {
         button_add = findViewById(R.id.button_add_ingredient);
 
         // declare status spinner
-        SpinnerStatusListener spinnerStatusListener = new SpinnerStatusListener();
+        SpinnerStatusListener spinnerStatusListener = new SpinnerStatusListener(getResources().getStringArray(R.array.status_database));
         spinner_status.setOnItemSelectedListener(spinnerStatusListener);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this,
@@ -46,16 +46,13 @@ public class AddIngredientActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner_status.setAdapter(statusAdapter);
 
-        button_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { //TODO if ingredient already exist, toast
-                String ingredientName = editText_ingredient_name.getText().toString();
-                if (ingredientName.isEmpty()){
-                    toastError(getString(R.string.no_ingredient_name));
-                } else{
-                    appViewModel.insertIngredient(new Ingredient(ingredientName, ingredientStatus));
-                    finish();
-                }
+        button_add.setOnClickListener(view -> { //TODO if ingredient already exist, toast
+            String ingredientName = editText_ingredient_name.getText().toString();
+            if (ingredientName.isEmpty()){
+                toastError(getString(R.string.no_ingredient_name));
+            } else{
+                appViewModel.insertIngredient(new Ingredient(ingredientName, ingredientStatus));
+                finish();
             }
         });
 
@@ -67,9 +64,16 @@ public class AddIngredientActivity extends AppCompatActivity {
     }
 
     class SpinnerStatusListener implements AdapterView.OnItemSelectedListener {
+
+        String[] itemValue;
+        // the English value that will get stored into the database when display is not in English
+        public SpinnerStatusListener(String[] itemValue){
+            this.itemValue = itemValue;
+        }
+
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            ingredientStatus = adapterView.getItemAtPosition(i).toString();
+            ingredientStatus = itemValue[i];
         }
 
         @Override

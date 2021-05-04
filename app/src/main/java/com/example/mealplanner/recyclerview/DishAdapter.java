@@ -40,8 +40,8 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         // populate data into the item through holder
         Dish dish = dishes.get(position);
 
-        holder.textView_item_dish_name.setText(dish.dish_name);
-        holder.textView_item_dish_type.setText(dish.dish_type);
+        holder.textView_item_dish_name.setText(dish.getDish_name());
+        holder.textView_item_dish_type.setText(dish.getDish_type());
         holder.textView_item_meal_type.setText(dish.getMealTypes());
 
 
@@ -49,13 +49,10 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         //Picasso.get().load(dish.getImageUrl()).into(holder.imageView_beer);
 
         // open to a detail page
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DishDetailActivity.class);
-                intent.putExtra("dish_name", dish.dish_name);
-                view.getContext().startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), DishDetailActivity.class);
+            intent.putExtra("dish_name", dish.getDish_name());
+            view.getContext().startActivity(intent);
         });
 
 

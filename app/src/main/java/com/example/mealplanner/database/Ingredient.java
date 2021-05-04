@@ -1,5 +1,7 @@
 package com.example.mealplanner.database;
 
+import com.example.mealplanner.R;
+
 import org.jetbrains.annotations.NotNull;
 
 import androidx.room.ColumnInfo;
@@ -15,17 +17,27 @@ public class Ingredient {
     @ColumnInfo(name = "status")
     public String status;
 
-    public Ingredient(String ingredient, String status){
+    public Ingredient(@NotNull String ingredient, String status){
         this.ingredient = ingredient;
         this.status = status;
     }
 
+    @NotNull
     public String getIngredient(){
         return this.ingredient;
     }
 
     public String getStatus(){
-        return this.status;
+        switch (this.status){
+            case "Regular":
+                return AppApplication.getContext().getString(R.string.regular);
+            case "Low":
+                return AppApplication.getContext().getString(R.string.low);
+            case "None":
+                return AppApplication.getContext().getString(R.string.none);
+            default:
+                return this.status;
+        }
     }
 
 }

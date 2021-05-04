@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">用餐计划</string>
+    <string name="title_add_dish">添加菜谱</string>
+    <string name="title_add_ingredient">添加食材</string>
+    <string name="title_dish_detail">菜谱信息</string>
+    <string name="title_home">主页</string>
+    <string name="title_dishes">菜谱</string>
+    <string name="title_pantry">食材</string>
+    <string name="title_setting">设定</string>
+    <string name="ingredient">食材</string>
+    <string name="status">状态</string>
+    <string name="button_generate">生成</string>
+    <string name="pantry_only">仅使用橱柜里的食材</string>
+    <string name="button_add">添加</string>
+    <string name="no_ingredient_name">请输入食材名</string>
+    <string name="no_dish_name">请输入菜谱名</string>
+    <string name="no_dish_type">请选择至少一种菜谱类型</string>
+    <string name="ingredient_name">食材名称</string>
+    <string name="dish_name">菜谱名称</string>
+    <string name="type">类型：</string>
+    <string name="meal">用餐时间</string>
+    <string name="vegetable">蔬菜</string>
+    <string name="meat">肉类</string>
+    <string name="seafood">海鲜</string>
+    <string name="staple">主食</string>
+    <string name="drink">饮品</string>
+    <string name="dessert">甜点</string>
+    <string name="fruit">水果</string>
+    <string name="breakfast">早餐</string>
+    <string name="lunch">午餐</string>
+    <string name="dinner">晚餐</string>
+    <string name="regular">正常</string>
+    <string name="low">低</string>
+    <string name="none">无</string>
+</resources>
