@@ -31,8 +31,16 @@ public class AppViewModel extends AndroidViewModel {
 
     public void insertDish(Dish dish) { repository.insertDish(dish); }
 
+    public void deleteDish(String name) {
+        repository.deleteDish(name);
+    }
+
     public void insertIngredient(Ingredient ingredient){
         repository.insertIngredient(ingredient);
+    }
+
+    public void deleteIngredient(String ingredient) {
+        repository.deleteIngredient(ingredient);
     }
 
     public void insertDishIngredient(DishIngredient dishIngredient){
@@ -49,5 +57,9 @@ public class AppViewModel extends AndroidViewModel {
 
     public LiveData<List<Ingredient>> getDishIngredients(String dish_name){
         return repository.getDishIngredients(dish_name);
+    }
+
+    public void updateStatusByIngredient(String ingredient, String status){
+        repository.updateStatusByIngredient(ingredient, status);
     }
 }

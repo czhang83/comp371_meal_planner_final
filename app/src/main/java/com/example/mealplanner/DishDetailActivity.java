@@ -1,6 +1,8 @@
 package com.example.mealplanner;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,9 @@ public class DishDetailActivity extends AppCompatActivity {
     TextView textView_detail_dish_type;
     TextView textView_detail_meal_type;
     ImageView imageView_detail_dish;
+    Button button_delete;
+    Button button_edit;
+
 
     private RecyclerView recyclerView_detail_ingredient;
 
@@ -38,15 +43,19 @@ public class DishDetailActivity extends AppCompatActivity {
         textView_detail_dish_type = findViewById(R.id.textView_detail_dish_type);
         textView_detail_meal_type = findViewById(R.id.textView_detail_meal_type);
         imageView_detail_dish = findViewById(R.id.imageView_detail_dish);
+        button_delete = findViewById(R.id.button_delete_dish);
+        button_edit = findViewById(R.id.button_edit_dish);
         recyclerView_detail_ingredient = findViewById(R.id.recyclerView_detail_ingredient);
 
         String dish_name = getIntent().getStringExtra("dish_name");
         LiveData<Dish> dish = appViewModel.getDishByName(dish_name);
         dish.observe(this, d ->{
-            textView_detail_dish_name.setText(d.getDish_name());
-            textView_detail_meal_type.setText(getString(R.string.meal) + "\n" + d.getMealTypes());
-            textView_detail_dish_type.setText(getString(R.string.type) + " " + d.getDish_type());
-            // TODO show image
+            if (d != null){
+                textView_detail_dish_name.setText(d.getDish_name());
+                textView_detail_meal_type.setText(getString(R.string.meal) + "\n" + d.getMealTypes());
+                textView_detail_dish_type.setText(getString(R.string.type) + " " + d.getDish_type());
+                // TODO show image
+            }
         });
 
         LiveData<List<Ingredient>> ingredients = appViewModel.getDishIngredients(dish_name);
@@ -59,8 +68,11 @@ public class DishDetailActivity extends AppCompatActivity {
                 this, DividerItemDecoration.VERTICAL);
         recyclerView_detail_ingredient.addItemDecoration(itemDecoration);
 
-        ingredients.observe(this, ing -> {
-            adapter.updateIngredients(ing);
+        ingredients.observe(this, adapter::updateIngredients);
+
+        button_delete.setOnClickListener(view -> {
+            appViewModel.deleteDish(dish_name);
+            finish();
         });
 
 

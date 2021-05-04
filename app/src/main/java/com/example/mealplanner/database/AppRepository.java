@@ -36,21 +36,23 @@ public class AppRepository {
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     void insertDish(Dish dish) {
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            dishDAO.insertAllDishes(dish);
-        });
+        AppDatabase.databaseWriteExecutor.execute(() -> dishDAO.insertAllDishes(dish));
+    }
+
+    void deleteDish(String name){
+        AppDatabase.databaseWriteExecutor.execute(() -> dishDAO.deleteDish(name));
     }
 
     void insertIngredient(Ingredient ingredient) {
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            ingredientDAO.insertIngredient(ingredient);
-        });
+        AppDatabase.databaseWriteExecutor.execute(() -> ingredientDAO.insertIngredient(ingredient));
+    }
+
+    void deleteIngredient(String ingredient){
+        AppDatabase.databaseWriteExecutor.execute(() -> ingredientDAO.deleteIngredient(ingredient));
     }
 
     void insertDishIngredient(DishIngredient dishIngredient){
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            dishIngredientDAO.insertDishIngredient(dishIngredient);
-        });
+        AppDatabase.databaseWriteExecutor.execute(() -> dishIngredientDAO.insertDishIngredient(dishIngredient));
     }
 
     // when first creating a dish with dishIngredient
@@ -70,5 +72,9 @@ public class AppRepository {
 
     LiveData<List<Ingredient>> getDishIngredients(String dish_name){
         return dishIngredientDAO.getDishIngredients(dish_name);
+    }
+
+    void updateStatusByIngredient(String ingredient, String status){
+        AppDatabase.databaseWriteExecutor.execute(() -> ingredientDAO.updateStatusByIngredient(ingredient, status));
     }
 }

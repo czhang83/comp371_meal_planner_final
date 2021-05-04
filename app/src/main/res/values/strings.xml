@@ -18,6 +18,10 @@
     <string name="no_dish_name">Please enter an dish name</string>
     <string name="no_dish_type">Please select at least one dish type</string>
 
+    <string name="button_delete">Delete</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_save">Save</string>
+
     <string name="ingredient_name">Ingredient name</string>
     <string name="dish_name">Dish name</string>
 

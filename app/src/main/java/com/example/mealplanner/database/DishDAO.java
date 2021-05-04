@@ -35,8 +35,8 @@ public interface DishDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAllDishes(Dish... dishes);
 
-    @Delete
-    void deleteDish(Dish dish);
+    @Query("DELETE FROM dishes_table WHERE dish_name LIKE :name")
+    void deleteDish(String name);
 
 
 

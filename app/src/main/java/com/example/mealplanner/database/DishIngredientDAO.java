@@ -12,7 +12,7 @@ import androidx.room.Query;
 @Dao
 public interface DishIngredientDAO {
     // ofr ingredients not in ingredient_table, status is null
-    @Query("SELECT ingredient, status FROM dish_ingredient LEFT OUTER JOIN ingredient_table WHERE :name LIKE dish_name")
+    @Query("SELECT dish_ingredient.ingredient, status FROM dish_ingredient LEFT OUTER JOIN ingredient_table WHERE :name LIKE dish_name")
     LiveData<List<Ingredient>> getDishIngredients(String name);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

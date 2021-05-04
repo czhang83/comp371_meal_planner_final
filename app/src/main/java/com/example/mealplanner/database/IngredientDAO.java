@@ -20,6 +20,14 @@ public interface IngredientDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertIngredient(Ingredient... ingredients);
 
-    @Delete
-    void deleteIngredient(Ingredient ingredient);
+    @Query("DELETE FROM ingredient_table WHERE ingredient LIKE :ingredient")
+    void deleteIngredient(String ingredient);
+
+    @Query("UPDATE ingredient_table SET status=:status WHERE ingredient LIKE :ingredient")
+    void updateStatusByIngredient(String ingredient, String status);
+
+
+    // check no duplicate newName beforehand
+    @Query("UPDATE ingredient_table SET ingredient=:newName WHERE ingredient LIKE :ingredient")
+    void updateIngredientName(String ingredient, String newName);
 }
