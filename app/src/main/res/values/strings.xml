@@ -38,6 +38,7 @@
     <string name="regular">Regular</string>
     <string name="low">Low</string>
     <string name="none">None</string>
+    <string name="nonexistent">Not in the Pantry</string>
 
     <string-array name="count">
         <item>0</item>

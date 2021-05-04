@@ -36,7 +36,7 @@ public class Ingredient {
             case "None":
                 return AppApplication.getContext().getString(R.string.none);
             default:
-                return this.status;
+                return AppApplication.getContext().getString(R.string.nonexistent);
         }
     }
 
