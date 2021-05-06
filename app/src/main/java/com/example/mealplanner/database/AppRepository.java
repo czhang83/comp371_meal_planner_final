@@ -77,4 +77,8 @@ public class AppRepository {
     void updateStatusByIngredient(String ingredient, String status){
         AppDatabase.databaseWriteExecutor.execute(() -> ingredientDAO.updateStatusByIngredient(ingredient, status));
     }
+
+    LiveData<Integer> containsIngredient(String ingredient){
+        return ingredientDAO.containsIngredient(ingredient);
+    }
 }

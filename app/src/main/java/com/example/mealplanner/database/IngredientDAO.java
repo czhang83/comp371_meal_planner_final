@@ -26,6 +26,8 @@ public interface IngredientDAO {
     @Query("UPDATE ingredient_table SET status=:status WHERE ingredient LIKE :ingredient")
     void updateStatusByIngredient(String ingredient, String status);
 
+    @Query("SELECT EXISTS(SELECT ingredient FROM ingredient_table WHERE ingredient LIKE :ingredient)")
+    LiveData<Integer> containsIngredient(String ingredient);
 
     // check no duplicate newName beforehand
     @Query("UPDATE ingredient_table SET ingredient=:newName WHERE ingredient LIKE :ingredient")

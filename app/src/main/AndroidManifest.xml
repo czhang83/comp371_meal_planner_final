@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mealplanner">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".database.AppApplication"
 
@@ -29,6 +31,12 @@
         <activity
             android:name=".DishDetailActivity"
             android:label="@string/title_dish_detail"/>
+        <activity
+            android:name=".SearchDishActivity"
+            android:label="@string/title_search_dish"/>
+        <activity
+            android:name=".AddDishFromSearchActivity"
+            android:label="@string/title_add_dish"/>
     </application>
 
 </manifest>

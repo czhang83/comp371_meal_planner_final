@@ -1,7 +1,6 @@
 package com.example.mealplanner;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +14,6 @@ import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.database.Dish;
 import com.example.mealplanner.database.DishIngredient;
 import com.example.mealplanner.database.Ingredient;
-import com.example.mealplanner.recyclerview.DishAdapter;
 import com.example.mealplanner.recyclerview.IngredientCheckboxAdapter;
 
 import java.util.ArrayList;

@@ -5,22 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mealplanner.AddDishActivity;
-import com.example.mealplanner.MainActivity;
 import com.example.mealplanner.R;
+import com.example.mealplanner.SearchDishActivity;
 import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.recyclerview.DishAdapter;
+import com.example.mealplanner.recyclerview.DishSearchedAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DishesFragment extends Fragment {
@@ -52,7 +49,7 @@ public class DishesFragment extends Fragment {
         floatingActionButtonAddDish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(root.getContext(), AddDishActivity.class);
+                Intent intent = new Intent(root.getContext(), SearchDishActivity.class);
                 startActivity(intent);
             }
         });

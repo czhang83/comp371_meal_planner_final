@@ -62,4 +62,8 @@ public class AppViewModel extends AndroidViewModel {
     public void updateStatusByIngredient(String ingredient, String status){
         repository.updateStatusByIngredient(ingredient, status);
     }
+
+    public LiveData<Integer> containsIngredient(String ingredient){
+        return repository.containsIngredient(ingredient);
+    }
 }

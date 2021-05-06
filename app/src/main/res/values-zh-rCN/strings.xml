@@ -37,4 +37,11 @@
     <string name="button_delete">删除</string>
     <string name="button_edit">编辑</string>
     <string name="button_save">保存</string>
+    <string name="title_search_dish">搜索菜谱</string>
+    <string name="search_hint">搜索菜谱名字</string>
+    <string name="button_add_customize">自定义菜谱</string>
+    <string name="button_search">搜索</string>
+    <string name="api_fail">API结果获取失败</string>
+    <string name="ingredient_exist">在橱柜里的食材</string>
+    <string name="ingredient_not_exist">不在橱柜里的食材</string>
 </resources>

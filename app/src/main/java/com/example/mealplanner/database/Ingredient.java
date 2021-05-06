@@ -1,11 +1,14 @@
 package com.example.mealplanner.database;
 
+import android.util.Log;
+
 import com.example.mealplanner.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "ingredient_table")
@@ -22,12 +25,14 @@ public class Ingredient {
         this.status = status;
     }
 
+
     @NotNull
     public String getIngredient(){
         return this.ingredient;
     }
 
     public String getStatus(){
+        if (this.status == null) return AppApplication.getContext().getString(R.string.nonexistent);
         switch (this.status){
             case "Regular":
                 return AppApplication.getContext().getString(R.string.regular);

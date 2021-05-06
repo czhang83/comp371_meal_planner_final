@@ -65,14 +65,6 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         return dishes.size();
     }
 
-    /**
-    // get info from API
-    public void launchDetailProductActivity(View view, Dish dish) {
-        Intent intent = new Intent(view.getContext(), ProductActivity.class);
-        intent.putExtra("dish", dish);
-        view.getContext().startActivity(intent);
-    }*/
-
     // update when text input change
     public void updateDishes(List<Dish> dishes){
         this.dishes = dishes;

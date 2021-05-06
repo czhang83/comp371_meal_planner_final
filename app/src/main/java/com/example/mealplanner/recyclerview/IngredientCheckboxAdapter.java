@@ -22,11 +22,19 @@ import androidx.recyclerview.widget.RecyclerView;
 public class IngredientCheckboxAdapter extends RecyclerView.Adapter<IngredientCheckboxAdapter.ViewHolder>{
     private List<Ingredient> ingredients;
     private Map<Ingredient, Boolean> checked; // whether an ingredient is checked
+    private boolean allChecked = false;
 
     //pass this list into the constructor of the adapter
     public IngredientCheckboxAdapter(List<Ingredient> ingredients){
         this.ingredients = ingredients;
         this.checked = new HashMap<>();
+    }
+
+    //pass this list into the constructor of the adapter
+    public IngredientCheckboxAdapter(List<Ingredient> ingredients, boolean allChecked){
+        this.ingredients = ingredients;
+        this.checked = new HashMap<>();
+        this.allChecked = allChecked;
     }
 
     @NonNull
@@ -51,6 +59,9 @@ public class IngredientCheckboxAdapter extends RecyclerView.Adapter<IngredientCh
                 checked.put(ingredient, b);
             }
         });
+        if (allChecked){
+            holder.checkBox_ingredient.setChecked(true);
+        }
     }
 
     @Override
