@@ -20,12 +20,13 @@
     <string name="no_dish_type">Please select at least one dish type</string>
     <string name="search_hint">Search by dish name</string>
     <string name="api_fail">API request failed</string>
+    <string name="camera_fail">Open camera failed</string>
 
     <string name="button_add_customize">Custimize dish</string>
     <string name="button_search_on_browser">Browser Search</string>
     <string name="button_search">Search</string>
     <string name="button_delete">Delete</string>
-    <string name="button_edit">Edit</string>
+    <string name="button_edit">Edit Image</string>
     <string name="button_save">Save</string>
 
     <string name="ingredient_name">Ingredient name</string>

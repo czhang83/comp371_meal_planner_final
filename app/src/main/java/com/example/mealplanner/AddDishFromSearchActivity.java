@@ -140,10 +140,9 @@ public class AddDishFromSearchActivity extends AppCompatActivity {
             } else if(!breakfast && !lunch && !dinner && !dessert){
                 toastError(getString(R.string.no_dish_type));
             }else{
-                appViewModel.insertDishWithDishIngredient(new Dish(dishName, dishType, breakfast, lunch, dinner, dessert),
+                appViewModel.insertDishWithDishIngredient(new Dish(dishName, dishType, breakfast, lunch, dinner, dessert, dish_image_url),
                         dishIngredients);
                 finish();
-                // TODO store image_url
             }
         });
 

@@ -11,6 +11,9 @@ import androidx.room.Query;
 
 @Dao
 public interface DishDAO {
+    @Query("UPDATE dishes_table SET image_path = :image_path WHERE dish_name LIKE :dish_name")
+    void updateImagePath(String dish_name, String image_path);
+
     @Query("SELECT * FROM dishes_table")
     LiveData<List<Dish>> getAllDishes();
 

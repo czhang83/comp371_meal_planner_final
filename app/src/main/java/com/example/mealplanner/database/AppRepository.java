@@ -9,12 +9,12 @@ import androidx.lifecycle.LiveData;
 
 public class AppRepository {
 
-    private DishDAO dishDAO;
-    private IngredientDAO ingredientDAO;
-    private DishIngredientDAO dishIngredientDAO;
+    private final DishDAO dishDAO;
+    private final IngredientDAO ingredientDAO;
+    private final DishIngredientDAO dishIngredientDAO;
 
-    private LiveData<List<Dish>> allDishes;
-    private LiveData<List<Ingredient>> allIngredients;
+    private final LiveData<List<Dish>> allDishes;
+    private final LiveData<List<Ingredient>> allIngredients;
 
     AppRepository() {
         AppDatabase db = AppApplication.getDatabase();
@@ -41,6 +41,10 @@ public class AppRepository {
 
     void deleteDish(String name){
         AppDatabase.databaseWriteExecutor.execute(() -> dishDAO.deleteDish(name));
+    }
+
+    void updateImagePath(String dish_name, String image_path){
+        AppDatabase.databaseWriteExecutor.execute(() -> dishDAO.updateImagePath(dish_name, image_path));
     }
 
     void insertIngredient(Ingredient ingredient) {

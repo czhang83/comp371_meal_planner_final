@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.mealplanner.DishDetailActivity;
 import com.example.mealplanner.R;
 import com.example.mealplanner.database.Dish;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,10 +44,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         holder.textView_item_dish_name.setText(dish.getDish_name());
         holder.textView_item_dish_type.setText(dish.getDish_type());
         holder.textView_item_meal_type.setText(dish.getMealTypes());
-
-
-        // TODO load image
-        //Picasso.get().load(dish.getImageUrl()).into(holder.imageView_beer);
+        Picasso.get().load(dish.getImagePath()).into(holder.imageView_dish);
 
         // open to a detail page
         holder.itemView.setOnClickListener(view -> {

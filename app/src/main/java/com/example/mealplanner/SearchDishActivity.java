@@ -35,7 +35,7 @@ public class SearchDishActivity extends AppCompatActivity {
     private RecyclerView recyclerView_search_result;
     private EditText editText_search_dish;
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static final AsyncHttpClient client = new AsyncHttpClient();
     String api_url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {

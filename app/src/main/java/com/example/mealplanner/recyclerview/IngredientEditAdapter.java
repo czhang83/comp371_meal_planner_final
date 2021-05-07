@@ -27,7 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAdapter.ViewHolder>{
     private List<Ingredient> ingredients;
-    private HashMap<String, String> updatedIngredients; // keep track of the ingredient and ingredient's status that got changed
+    private final HashMap<String, String> updatedIngredients; // keep track of the ingredient and ingredient's status that got changed
 
     //pass this list into the constructor of the adapter
     public IngredientEditAdapter(List<Ingredient> ingredients){

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class IngredientCheckboxAdapter extends RecyclerView.Adapter<IngredientCheckboxAdapter.ViewHolder>{
     private List<Ingredient> ingredients;
-    private Map<Ingredient, Boolean> checked; // whether an ingredient is checked
+    private final Map<Ingredient, Boolean> checked; // whether an ingredient is checked
     private boolean allChecked = false;
 
     //pass this list into the constructor of the adapter

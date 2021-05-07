@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 public class LightSensor {
     // each activity have one sensor instance
     // switch between dark and light mode depending on light sensor data
-    private Context context;
-    private SensorManager sensorManager;
-    private Sensor lightSensor;
+    private final Context context;
+    private final SensorManager sensorManager;
+    private final Sensor lightSensor;
 
     public LightSensor(Context context){
         this.context = context;

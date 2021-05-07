@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 
 public class AppViewModel extends AndroidViewModel {
 
-    private AppRepository repository;
+    private final AppRepository repository;
 
     private final LiveData<List<Dish>> allDishes;
     private final LiveData<List<Ingredient>> allIngredients;
@@ -33,6 +33,10 @@ public class AppViewModel extends AndroidViewModel {
 
     public void deleteDish(String name) {
         repository.deleteDish(name);
+    }
+
+    public void updateImagePath(String dish_name, String image_path){
+        repository.updateImagePath(dish_name, image_path);
     }
 
     public void insertIngredient(Ingredient ingredient){

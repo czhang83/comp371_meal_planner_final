@@ -27,13 +27,17 @@ public class Dish {
     @ColumnInfo(name = "dessert")
     public int dessert;
 
-    public Dish(@NotNull String dish_name, String dish_type, int breakfast, int lunch, int dinner, int dessert){
+    @ColumnInfo(name = "image_path")
+    public String image_path;
+
+    public Dish(@NotNull String dish_name, String dish_type, int breakfast, int lunch, int dinner, int dessert, String image_path){
         this.dish_name = dish_name;
         this.dish_type = dish_type;
         this.breakfast = breakfast;
         this.lunch = lunch;
         this.dinner = dinner;
         this.dessert = dessert;
+        this.image_path = image_path;
     }
 
     public Dish(@NotNull String dish_name, String dish_type, boolean breakfast, boolean lunch, boolean dinner, boolean dessert){
@@ -43,6 +47,16 @@ public class Dish {
         this.lunch = boolToInt(lunch);
         this.dinner = boolToInt(dinner);
         this.dessert = boolToInt(dessert);
+    }
+
+    public Dish(@NotNull String dish_name, String dish_type, boolean breakfast, boolean lunch, boolean dinner, boolean dessert, String image_path){
+        this.dish_name = dish_name;
+        this.dish_type = dish_type;
+        this.breakfast = boolToInt(breakfast);
+        this.lunch = boolToInt(lunch);
+        this.dinner = boolToInt(dinner);
+        this.dessert = boolToInt(dessert);
+        this.image_path = image_path;
     }
 
     public int boolToInt(boolean b){
@@ -85,5 +99,9 @@ public class Dish {
         if (this.dessert == 1) meal_types = meal_types.concat(AppApplication.getContext().getString(R.string.dessert) +"\n");
         if (meal_types.endsWith("\n")) meal_types = meal_types.substring(0, meal_types.length() - 1);
         return meal_types;
+    }
+
+    public String getImagePath(){
+        return this.image_path;
     }
 }
