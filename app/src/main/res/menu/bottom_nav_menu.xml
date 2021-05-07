@@ -16,9 +16,5 @@
         android:icon="@drawable/ic_pantry"
         android:title="@string/title_pantry" />
 
-    <item
-        android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_setting"
-        android:title="@string/title_setting" />
 
 </menu>

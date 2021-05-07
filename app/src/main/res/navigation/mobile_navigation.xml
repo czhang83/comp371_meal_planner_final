@@ -23,9 +23,4 @@
         android:label="@string/title_pantry"
         tools:layout="@layout/fragment_pantry" />
 
-    <fragment
-        android:id="@+id/navigation_setting"
-        android:name="com.example.mealplanner.fragments.SettingFragment"
-        android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
 </navigation>
