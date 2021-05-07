@@ -44,4 +44,7 @@
     <string name="api_fail">API结果获取失败</string>
     <string name="ingredient_exist">在橱柜里的食材</string>
     <string name="ingredient_not_exist">不在橱柜里的食材</string>
+    <string name="or">或者</string>
+    <string name="and">并</string>
+    <string name="button_search_on_browser">网页搜索</string>
 </resources>

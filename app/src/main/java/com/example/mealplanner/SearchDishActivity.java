@@ -1,5 +1,6 @@
 package com.example.mealplanner;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import cz.msebera.android.httpclient.Header;
 public class SearchDishActivity extends AppCompatActivity {
     private Button button_search;
     private Button button_add_customize;
+    private Button button_search_on_browser;
     private RecyclerView recyclerView_search_result;
     private EditText editText_search_dish;
 
@@ -41,6 +43,7 @@ public class SearchDishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_dish);
         button_search = findViewById(R.id.button_search);
         button_add_customize = findViewById(R.id.button_add_customize);
+        button_search_on_browser = findViewById(R.id.button_search_on_browser);
         recyclerView_search_result = findViewById(R.id.recyclerView_search_result);
         editText_search_dish = findViewById(R.id.editText_search_dish);
 
@@ -58,6 +61,15 @@ public class SearchDishActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SearchDishActivity.this, AddDishActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button_search_on_browser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // google search using user input
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, editText_search_dish.getText().toString());
                 startActivity(intent);
             }
         });
