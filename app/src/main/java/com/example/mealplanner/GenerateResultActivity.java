@@ -58,9 +58,6 @@ public class GenerateResultActivity extends AppCompatActivity {
         pantry_only = intent.getBooleanExtra("pantry_only", false);
         dish_types = intent.getStringArrayListExtra("dish_types");
 
-        Log.d("dish", mealType);
-        Log.d("dish", String.valueOf(pantry_only));
-        Log.d("dish", dish_types.get(0));
 
         for (String dish_type: dish_types){
             LiveData<String> resultDish;
@@ -75,7 +72,6 @@ public class GenerateResultActivity extends AppCompatActivity {
                     if (s != null){
                         generatedDishes.add(new DishGenerated(s, dish_type));
                         adapter.updateDishes(generatedDishes);
-                        Log.d("dish", s);
                         resultDish.removeObserver(this);
                     }
                 }

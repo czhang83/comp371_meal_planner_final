@@ -26,7 +26,8 @@
     <string name="button_search_on_browser">Browser Search</string>
     <string name="button_search">Search</string>
     <string name="button_delete">Delete</string>
-    <string name="button_edit">Edit Image</string>
+    <string name="button_edit_image">Edit Image</string>
+    <string name="button_edit">Edit</string>
     <string name="button_save">Save</string>
     <string name="button_regenerate">Regenerate</string>
 

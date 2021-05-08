@@ -6,27 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mealplanner.AddDishActivity;
 import com.example.mealplanner.AddIngredientActivity;
 import com.example.mealplanner.R;
 import com.example.mealplanner.database.AppViewModel;
-import com.example.mealplanner.database.Ingredient;
 import com.example.mealplanner.recyclerview.IngredientAdapter;
 import com.example.mealplanner.recyclerview.IngredientEditAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Map;
 
 public class PantryFragment extends Fragment {
 
@@ -83,7 +76,7 @@ public class PantryFragment extends Fragment {
 
         appViewModel.getAllIngredients().observe(getViewLifecycleOwner(), adapter::updateIngredients);
 
-        button_edit_ingredient.setText(R.string.button_edit);
+        button_edit_ingredient.setText(R.string.button_edit_image);
         button_edit_ingredient.setOnClickListener(this::onClickEdit);
     }
 }
