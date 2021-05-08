@@ -3,6 +3,8 @@ package com.example.mealplanner.database;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.mealplanner.utilities.LightSensor;
+
 public class AppApplication extends Application {
 
     private static Context context;
@@ -21,6 +23,8 @@ public class AppApplication extends Application {
         if (repository == null) {
             repository = new AppRepository();
         }
+        // determine to use dark or light mode depending on light sensor data
+        LightSensor lightSensor = new LightSensor(AppApplication.context);
     }
 
 
