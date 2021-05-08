@@ -17,7 +17,7 @@
     <string name="button_add">Add</string>
     <string name="no_ingredient_name">Please enter an ingredient name</string>
     <string name="no_dish_name">Please enter an dish name</string>
-    <string name="no_dish_type">Please select at least one dish type</string>
+    <string name="no_dish_type">Please select at least one meal type</string>
     <string name="search_hint">Search by dish name</string>
     <string name="api_fail">API request failed</string>
     <string name="camera_fail">Open camera failed</string>

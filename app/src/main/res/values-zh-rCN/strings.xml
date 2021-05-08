@@ -14,7 +14,7 @@
     <string name="button_add">添加</string>
     <string name="no_ingredient_name">请输入食材名</string>
     <string name="no_dish_name">请输入菜谱名</string>
-    <string name="no_dish_type">请选择至少一种菜谱类型</string>
+    <string name="no_dish_type">请选择至少一种类型</string>
     <string name="ingredient_name">食材名称</string>
     <string name="dish_name">菜谱名称</string>
     <string name="type">类型：</string>

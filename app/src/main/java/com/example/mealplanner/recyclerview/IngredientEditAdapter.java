@@ -162,6 +162,6 @@ public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAd
         public void startSelect(){
             this.startSelect = true;
         }
-        
+
     }
 }

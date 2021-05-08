@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.mealplanner.DishDetailActivity;
 import com.example.mealplanner.R;
+import com.example.mealplanner.database.AppApplication;
 import com.example.mealplanner.database.Dish;
 import com.squareup.picasso.Picasso;
 
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
     private List<Dish> dishes;
+    static final float IMAGE_SIZE = 100;
 
     //pass this list into the constructor of the adapter
     public DishAdapter(List<Dish> dishes){
@@ -44,7 +46,9 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
         holder.textView_item_dish_name.setText(dish.getDish_name());
         holder.textView_item_dish_type.setText(dish.getDish_type());
         holder.textView_item_meal_type.setText(dish.getMealTypes());
-        Picasso.get().load(dish.getImagePath()).into(holder.imageView_dish);
+        Picasso.get().load(dish.getImagePath())
+                .resize(Dp2Px(IMAGE_SIZE), Dp2Px(IMAGE_SIZE))
+                .into(holder.imageView_dish);
 
         // open to a detail page
         holder.itemView.setOnClickListener(view -> {
@@ -85,6 +89,11 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder>{
             this.itemView = itemView;
         }
 
+    }
+
+    public int Dp2Px(float dp) {
+        final float scale = AppApplication.getContext().getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 
 }
