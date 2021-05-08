@@ -42,4 +42,8 @@ public class Ingredient {
         }
     }
 
+    public Ingredient copy(){
+        return new Ingredient(this.ingredient, this.status);
+    }
+
 }

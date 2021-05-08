@@ -1,6 +1,7 @@
 package com.example.mealplanner.recyclerview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.mealplanner.database.AppApplication;
 import com.example.mealplanner.database.AppDatabase;
 import com.example.mealplanner.database.Ingredient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +27,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAdapter.ViewHolder>{
     private List<Ingredient> ingredients;
     private final HashMap<String, String> updatedIngredients; // keep track of the ingredient and ingredient's status that got changed
+    private final ArrayList<String> deletedIngredients;
 
     //pass this list into the constructor of the adapter
     public IngredientEditAdapter(List<Ingredient> ingredients){
         this.ingredients = ingredients;
         updatedIngredients = new HashMap<>();
+        deletedIngredients = new ArrayList<>();
     }
 
     @NonNull
@@ -50,9 +54,10 @@ public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAd
 
         holder.textView_edit_ingredient_name.setText(ingredient.getIngredient());
 
+
         // declare status spinner
         SpinnerStatusListener spinnerStatusListener = new SpinnerStatusListener(ingredient.getIngredient(), ingredient.getStatus(),
-                holder.itemView.getResources().getStringArray(R.array.status_database));
+                holder.itemView.getResources().getStringArray(R.array.status_database), position);
         holder.spinner_edit_ingredient_status.setOnItemSelectedListener(spinnerStatusListener);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(holder.itemView.getContext(),
@@ -61,13 +66,20 @@ public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAd
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         holder.spinner_edit_ingredient_status.setAdapter(statusAdapter);
+
+        Log.d("?", String.valueOf(updatedIngredients));
         holder.spinner_edit_ingredient_status.setSelection(statusAdapter.getPosition(ingredient.getStatus()));
+        spinnerStatusListener.startSelect();
 
         // delete button
-        holder.imageButton_delete_ingredient.setOnClickListener(view -> AppDatabase.databaseWriteExecutor.execute(() -> {
-            // Couldn't find a better way to update the database
-            AppApplication.getDatabase().ingredientDAO().deleteIngredient(ingredient.ingredient);
-        }));
+        holder.imageButton_delete_ingredient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deletedIngredients.add(ingredient.ingredient);
+                ingredients.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -76,6 +88,12 @@ public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAd
     public void updateDatabase(){
         for (Map.Entry<String, String> entry : this.updatedIngredients.entrySet()) {
             AppDatabase.databaseWriteExecutor.execute(() -> AppApplication.getDatabase().ingredientDAO().updateStatusByIngredient(entry.getKey(), entry.getValue()));
+        }
+        for (String ingredient: deletedIngredients){
+            AppDatabase.databaseWriteExecutor.execute(() -> {
+                // Couldn't find a better way to update the database
+                AppApplication.getDatabase().ingredientDAO().deleteIngredient(ingredient);
+            });
         }
     }
 
@@ -86,7 +104,7 @@ public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAd
         return ingredients.size();
     }
 
-
+    // this should be only triggered by delete after getting info from database
     public void updateIngredients(List<Ingredient> ingredients){
         this.ingredients = ingredients;
         notifyDataSetChanged();
@@ -113,25 +131,37 @@ public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAd
         String ingredient;
         String initialStatus;
         String[] itemValue;
+        boolean startSelect = false;
+        int position;
         // the English value that will get stored into the database when display is not in English
-        public SpinnerStatusListener(String ingredient, String initialStatus, String[] itemValue){
+        public SpinnerStatusListener(String ingredient, String initialStatus, String[] itemValue, int position){
             this.ingredient = ingredient;
             this.initialStatus = initialStatus;
             this.itemValue = itemValue;
+            this.position = position;
         }
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            if (itemValue[i].equals(initialStatus)){
-                updatedIngredients.remove(ingredient);
-            } else {
-                updatedIngredients.put(ingredient, itemValue[i]);
+            if (startSelect){ // avoid default select trigger this
+                ingredients.get(position).status = itemValue[i];
+                if (itemValue[i].equals(initialStatus)){
+                    updatedIngredients.remove(ingredient);
+                } else {
+                    updatedIngredients.put(ingredient, itemValue[i]);
+                }
             }
+
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
+
+        public void startSelect(){
+            this.startSelect = true;
+        }
+        
     }
 }
