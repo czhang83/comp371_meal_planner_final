@@ -7,6 +7,7 @@
     <string name="title_dishes">Dishes</string>
     <string name="title_pantry">Pantry</string>
     <string name="title_search_dish">Search Dish</string>
+    <string name="title_result">Result</string>
 
     <string name="ingredient">Ingredient</string>
     <string name="status">Status</string>
@@ -27,6 +28,7 @@
     <string name="button_delete">Delete</string>
     <string name="button_edit">Edit Image</string>
     <string name="button_save">Save</string>
+    <string name="button_regenerate">Regenerate</string>
 
     <string name="ingredient_name">Ingredient name</string>
     <string name="dish_name">Dish name</string>

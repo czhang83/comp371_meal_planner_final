@@ -1,5 +1,6 @@
 package com.example.mealplanner.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +17,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.mealplanner.DishDetailActivity;
+import com.example.mealplanner.GenerateResultActivity;
 import com.example.mealplanner.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class HomeFragment extends Fragment {
@@ -84,7 +88,7 @@ public class HomeFragment extends Fragment {
         declareCountSpinner(R.id.spinner_dessert_count);
         declareCountSpinner(R.id.spinner_fruit_count);
 
-        button_generate.setOnClickListener(view -> getUserInput());
+        button_generate.setOnClickListener(view -> generate());
 
         return root;
     }
@@ -102,11 +106,21 @@ public class HomeFragment extends Fragment {
         spinner.setAdapter(adapter);
     }
 
-    public void getUserInput(){
-        Log.d("spinner", mealType);
-        Log.d("spinner", "Vegetable count: " + vegetableCount);
-        Log.d("spinner", "Fruit count: " + fruitCount);
-        Log.d("spinner", String.valueOf(pantry_only));
+    public void generate(){
+        ArrayList<String> dish_types = new ArrayList<>();
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(vegetableCount), getResources().getStringArray(R.array.dish_type_database)[0]));
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(meatCount), getResources().getStringArray(R.array.dish_type_database)[1]));
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(seafoodCount), getResources().getStringArray(R.array.dish_type_database)[2]));
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(stapleCount), getResources().getStringArray(R.array.dish_type_database)[3]));
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(drinkCount), getResources().getStringArray(R.array.dish_type_database)[4]));
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(dessertCount), getResources().getStringArray(R.array.dish_type_database)[5]));
+        dish_types.addAll(Collections.nCopies(Integer.parseInt(fruitCount), getResources().getStringArray(R.array.dish_type_database)[6]));
+
+        Intent intent = new Intent(root.getContext(), GenerateResultActivity.class);
+        intent.putExtra("meal_type", mealType);
+        intent.putExtra("pantry_only", pantry_only);
+        intent.putStringArrayListExtra("dish_types", dish_types);
+        startActivity(intent);
     }
 
     public void toastError(String text){

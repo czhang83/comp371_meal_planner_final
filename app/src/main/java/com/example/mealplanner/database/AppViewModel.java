@@ -70,4 +70,12 @@ public class AppViewModel extends AndroidViewModel {
     public LiveData<Integer> containsIngredient(String ingredient){
         return repository.containsIngredient(ingredient);
     }
+
+    public LiveData<String> getRandomMealByType(String dish_type, String meal_type){
+        return repository.getRandomMealByType(dish_type, meal_type);
+    }
+
+    public LiveData<String> getRandomMealByTypeInPantry(String dish_type, String meal_type){
+        return repository.getRandomMealByTypeInPantry(dish_type, meal_type);
+    }
 }

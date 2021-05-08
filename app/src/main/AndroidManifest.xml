@@ -25,7 +25,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths"/>
         </provider>
 
         <activity
@@ -52,6 +52,9 @@
         <activity
             android:name=".AddDishFromSearchActivity"
             android:label="@string/title_add_dish"/>
+        <activity
+            android:name=".GenerateResultActivity"
+            android:label="@string/title_result"/>
     </application>
 
 </manifest>

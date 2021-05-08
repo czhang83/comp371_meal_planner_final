@@ -47,4 +47,6 @@
     <string name="and">并</string>
     <string name="button_search_on_browser">网页搜索</string>
     <string name="camera_fail">拍照失败</string>
+    <string name="title_result">结果</string>
+    <string name="button_regenerate">重新生成</string>
 </resources>

@@ -85,4 +85,34 @@ public class AppRepository {
     LiveData<Integer> containsIngredient(String ingredient){
         return ingredientDAO.containsIngredient(ingredient);
     }
+
+    LiveData<String> getRandomMealByType(String dish_type, String meal_type){
+        switch (meal_type) {
+            case "Breakfast":
+                return dishDAO.getRandomBreakfastByType(dish_type);
+            case "Lunch":
+                return dishDAO.getRandomLunchByType(dish_type);
+            case "Dinner":
+                return dishDAO.getRandomDinnerByType(dish_type);
+            case "Dessert":
+                return dishDAO.getRandomDessertByType(dish_type);
+            default:
+                return null;
+        }
+    }
+
+    LiveData<String> getRandomMealByTypeInPantry(String dish_type, String meal_type){
+        switch (meal_type) {
+            case "Breakfast":
+                return dishDAO.getRandomBreakfastByTypeInPantry(dish_type);
+            case "Lunch":
+                return dishDAO.getRandomLunchByTypeInPantry(dish_type);
+            case "Dinner":
+                return dishDAO.getRandomDinnerByTypeInPantry(dish_type);
+            case "Dessert":
+                return dishDAO.getRandomDessertByTypeInPantry(dish_type);
+            default:
+                return null;
+        }
+    }
 }

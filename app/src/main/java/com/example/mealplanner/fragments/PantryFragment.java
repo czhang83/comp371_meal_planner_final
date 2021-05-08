@@ -57,7 +57,7 @@ public class PantryFragment extends Fragment {
 
         floatingActionButtonAddIngredient.setOnClickListener(view -> {
             Intent intent = new Intent(root.getContext(), AddIngredientActivity.class);
-            PantryFragment.this.startActivity(intent);
+            startActivity(intent);
         });
 
         button_edit_ingredient.setOnClickListener(this::onClickEdit);

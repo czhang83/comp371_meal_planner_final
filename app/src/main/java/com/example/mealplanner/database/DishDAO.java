@@ -20,8 +20,42 @@ public interface DishDAO {
     @Query("SELECT * FROM dishes_table WHERE :name Like dish_name")
     LiveData<Dish> getDishByName(String name);
 
-    @Query("SELECT * FROM dishes_table WHERE :name LIKE dish_type")
-    LiveData<List<Dish>> getDishesByType(String name);
+
+
+    @Query("SELECT dish_name FROM dishes_table WHERE :dish_type LIKE dish_type AND breakfast = 1 ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomBreakfastByType(String dish_type);
+
+    @Query("SELECT dish_name FROM dishes_table NATURAL JOIN dish_ingredient NATURAL JOIN ingredient_table " +
+            "WHERE :dish_type LIKE dish_type AND breakfast = 1 AND (status LIKE 'Regular' OR status LIKE 'Low')" +
+            "ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomBreakfastByTypeInPantry(String dish_type);
+
+    @Query("SELECT dish_name FROM dishes_table WHERE :dish_type LIKE dish_type AND lunch = 1 ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomLunchByType(String dish_type);
+
+    @Query("SELECT dish_name FROM dishes_table NATURAL JOIN dish_ingredient NATURAL JOIN ingredient_table " +
+            "WHERE :dish_type LIKE dish_type AND lunch = 1 AND (status LIKE 'Regular' OR status LIKE 'Low')" +
+            "ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomLunchByTypeInPantry(String dish_type);
+
+    @Query("SELECT dish_name FROM dishes_table WHERE :dish_type LIKE dish_type AND dinner = 1 ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomDinnerByType(String dish_type);
+
+    @Query("SELECT dish_name FROM dishes_table NATURAL JOIN dish_ingredient NATURAL JOIN ingredient_table " +
+            "WHERE :dish_type LIKE dish_type AND dinner = 1 AND (status LIKE 'Regular' OR status LIKE 'Low')" +
+            "ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomDinnerByTypeInPantry(String dish_type);
+
+
+    @Query("SELECT dish_name FROM dishes_table WHERE :dish_type LIKE dish_type AND dessert = 1 ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomDessertByType(String dish_type);
+
+    @Query("SELECT dish_name FROM dishes_table NATURAL JOIN dish_ingredient NATURAL JOIN ingredient_table " +
+            "WHERE :dish_type LIKE dish_type AND dessert = 1 AND (status LIKE 'Regular' OR status LIKE 'Low')" +
+            "ORDER BY RANDOM() LIMIT 1")
+    LiveData<String> getRandomDessertByTypeInPantry(String dish_type);
+
+
 
     @Query("SELECT * FROM dishes_table WHERE breakfast = 1")
     LiveData<List<Dish>> getAllBreakfast();
