@@ -2,7 +2,6 @@ package com.example.mealplanner.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.mealplanner.DishDetailActivity;
 import com.example.mealplanner.GenerateResultActivity;
 import com.example.mealplanner.R;
 

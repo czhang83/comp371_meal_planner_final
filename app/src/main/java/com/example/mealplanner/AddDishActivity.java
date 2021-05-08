@@ -15,6 +15,7 @@ import com.example.mealplanner.database.Dish;
 import com.example.mealplanner.database.DishIngredient;
 import com.example.mealplanner.database.Ingredient;
 import com.example.mealplanner.recyclerview.IngredientCheckboxAdapter;
+import com.example.mealplanner.utilities.CustomizedView;
 
 import java.util.ArrayList;
 
@@ -70,10 +71,8 @@ public class AddDishActivity extends AppCompatActivity {
         // create recycler adapter
         IngredientCheckboxAdapter adapter = new IngredientCheckboxAdapter(appViewModel.getAllIngredients().getValue());
         recyclerView_ingredient_checkboxes.setAdapter(adapter);
-        recyclerView_ingredient_checkboxes.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_ingredient_checkboxes.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView_ingredient_checkboxes.addItemDecoration(itemDecoration);
+        CustomizedView.setUpRecyclerView(this, recyclerView_ingredient_checkboxes);
+
 
         // ingredient should not change
         appViewModel.getAllIngredients().observe(this, adapter::updateIngredients);

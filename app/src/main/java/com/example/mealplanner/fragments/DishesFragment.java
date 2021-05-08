@@ -17,6 +17,7 @@ import com.example.mealplanner.R;
 import com.example.mealplanner.SearchDishActivity;
 import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.recyclerview.DishAdapter;
+import com.example.mealplanner.utilities.CustomizedView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DishesFragment extends Fragment {
@@ -35,11 +36,7 @@ public class DishesFragment extends Fragment {
         // create recycler adapter
         DishAdapter adapter = new DishAdapter(appViewModel.getAllDishes().getValue());
         recyclerView_dish.setAdapter(adapter);
-        recyclerView_dish.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        recyclerView_dish.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(
-                root.getContext(), DividerItemDecoration.VERTICAL);
-        recyclerView_dish.addItemDecoration(itemDecoration);
+        CustomizedView.setUpRecyclerView(root.getContext(), recyclerView_dish);
 
         appViewModel.getAllDishes().observe(getViewLifecycleOwner(), adapter::updateDishes);
 

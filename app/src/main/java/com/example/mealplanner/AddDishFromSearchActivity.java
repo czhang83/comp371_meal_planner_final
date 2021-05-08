@@ -2,7 +2,6 @@ package com.example.mealplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +16,7 @@ import com.example.mealplanner.database.Dish;
 import com.example.mealplanner.database.DishIngredient;
 import com.example.mealplanner.database.Ingredient;
 import com.example.mealplanner.recyclerview.IngredientCheckboxAdapter;
+import com.example.mealplanner.utilities.CustomizedView;
 
 import java.util.ArrayList;
 
@@ -81,16 +81,9 @@ public class AddDishFromSearchActivity extends AppCompatActivity {
         spinner_dish_type_from_search.setAdapter(dishTypeAdapter);
 
 
-        // define recycler views
-        recyclerView_ingredient_exist.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_ingredient_exist.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView_ingredient_exist.addItemDecoration(itemDecoration);
-        recyclerView_ingredient_not_exist = findViewById(R.id.recyclerView_ingredient_not_exist);
-        recyclerView_ingredient_not_exist.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_ingredient_not_exist.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration2 = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView_ingredient_not_exist.addItemDecoration(itemDecoration2);
+        // setup recycler views
+        CustomizedView.setUpRecyclerView(this, recyclerView_ingredient_exist);
+        CustomizedView.setUpRecyclerView(this, recyclerView_ingredient_not_exist);
 
 
         // separate ingredients into two arrays of ingredients that exist and not exist in the pantry

@@ -22,7 +22,7 @@
     <string name="api_fail">API request failed</string>
     <string name="camera_fail">Open camera failed</string>
 
-    <string name="button_add_customize">Custimize dish</string>
+    <string name="button_add_customize">Customize dish</string>
     <string name="button_search_on_browser">Browser Search</string>
     <string name="button_search">Search</string>
     <string name="button_delete">Delete</string>

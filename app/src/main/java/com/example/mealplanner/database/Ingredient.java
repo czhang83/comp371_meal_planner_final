@@ -1,14 +1,11 @@
 package com.example.mealplanner.database;
 
-import android.util.Log;
-
 import com.example.mealplanner.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "ingredient_table")

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mealplanner.recyclerview.DishSearchedAdapter;
-import com.example.mealplanner.recyclerview.IngredientAdapter;
+import com.example.mealplanner.utilities.CustomizedView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -50,28 +50,18 @@ public class SearchDishActivity extends AppCompatActivity {
         // create recycler adapter
         DishSearchedAdapter adapter = new DishSearchedAdapter();
         recyclerView_search_result.setAdapter(adapter);
-        recyclerView_search_result.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_search_result.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(
-                this, DividerItemDecoration.VERTICAL);
-        recyclerView_search_result.addItemDecoration(itemDecoration);
+        CustomizedView.setUpRecyclerView(this, recyclerView_search_result);
 
         button_search.setOnClickListener(this::searchDish);
-        button_add_customize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchDishActivity.this, AddDishActivity.class);
-                startActivity(intent);
-            }
+        button_add_customize.setOnClickListener(view -> {
+            Intent intent = new Intent(SearchDishActivity.this, AddDishActivity.class);
+            startActivity(intent);
         });
 
-        button_search_on_browser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { // google search using user input
-                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                intent.putExtra(SearchManager.QUERY, editText_search_dish.getText().toString());
-                startActivity(intent);
-            }
+        button_search_on_browser.setOnClickListener(view -> { // google search using user input
+            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+            intent.putExtra(SearchManager.QUERY, editText_search_dish.getText().toString());
+            startActivity(intent);
         });
 
     }

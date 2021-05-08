@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.example.mealplanner.R;
 import com.example.mealplanner.database.Ingredient;
@@ -53,12 +52,7 @@ public class IngredientCheckboxAdapter extends RecyclerView.Adapter<IngredientCh
         Ingredient ingredient = ingredients.get(position);
 
         holder.checkBox_ingredient.setText(ingredient.ingredient);
-        holder.checkBox_ingredient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                checked.put(ingredient, b);
-            }
-        });
+        holder.checkBox_ingredient.setOnCheckedChangeListener((compoundButton, b) -> checked.put(ingredient, b));
         if (allChecked){
             holder.checkBox_ingredient.setChecked(true);
         }

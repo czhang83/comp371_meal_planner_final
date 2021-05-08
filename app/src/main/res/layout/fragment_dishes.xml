@@ -15,7 +15,8 @@
         android:clickable="true"
         android:src="@drawable/ic_add_circle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_dish"

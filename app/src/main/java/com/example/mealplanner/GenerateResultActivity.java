@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.recyclerview.DishGenerated;
+import com.example.mealplanner.utilities.CustomizedView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +48,7 @@ public class GenerateResultActivity extends AppCompatActivity {
         // create recycler adapter
         DishGeneratedAdapter adapter = new DishGeneratedAdapter(generatedDishes);
         recyclerView_dishes_generated.setAdapter(adapter);
-        recyclerView_dishes_generated.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_dishes_generated.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(
-                this, DividerItemDecoration.VERTICAL);
-        recyclerView_dishes_generated.addItemDecoration(itemDecoration);
+        CustomizedView.setUpRecyclerView(this, recyclerView_dishes_generated);
 
         Intent intent = getIntent();
         mealType = intent.getStringExtra("meal_type");

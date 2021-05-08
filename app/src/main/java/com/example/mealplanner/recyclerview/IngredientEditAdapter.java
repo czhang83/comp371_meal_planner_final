@@ -13,16 +13,13 @@ import android.widget.TextView;
 import com.example.mealplanner.R;
 import com.example.mealplanner.database.AppApplication;
 import com.example.mealplanner.database.AppDatabase;
-import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.database.Ingredient;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class IngredientEditAdapter extends RecyclerView.Adapter<IngredientEditAdapter.ViewHolder>{

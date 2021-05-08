@@ -1,15 +1,11 @@
 package com.example.mealplanner;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +15,7 @@ import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.database.Dish;
 import com.example.mealplanner.database.Ingredient;
 import com.example.mealplanner.recyclerview.IngredientAdapter;
+import com.example.mealplanner.utilities.CustomizedView;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -87,11 +84,7 @@ public class DishDetailActivity extends AppCompatActivity {
         // create recycler adapter
         IngredientAdapter adapter = new IngredientAdapter(ingredients.getValue());
         recyclerView_detail_ingredient.setAdapter(adapter);
-        recyclerView_detail_ingredient.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView_detail_ingredient.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(
-                this, DividerItemDecoration.VERTICAL);
-        recyclerView_detail_ingredient.addItemDecoration(itemDecoration);
+        CustomizedView.setUpRecyclerView(this, recyclerView_detail_ingredient);
 
         ingredients.observe(this, adapter::updateIngredients);
 
@@ -101,9 +94,7 @@ public class DishDetailActivity extends AppCompatActivity {
         });
 
         // click the image to edit or change image
-        button_edit_image.setOnClickListener(view -> {
-            dispatchTakePictureIntent();
-        });
+        button_edit_image.setOnClickListener(view -> dispatchTakePictureIntent());
 
     }
 

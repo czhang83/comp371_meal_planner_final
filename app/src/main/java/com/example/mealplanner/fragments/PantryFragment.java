@@ -10,8 +10,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mealplanner.AddIngredientActivity;
@@ -19,6 +17,7 @@ import com.example.mealplanner.R;
 import com.example.mealplanner.database.AppViewModel;
 import com.example.mealplanner.recyclerview.IngredientAdapter;
 import com.example.mealplanner.recyclerview.IngredientEditAdapter;
+import com.example.mealplanner.utilities.CustomizedView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PantryFragment extends Fragment {
@@ -40,11 +39,7 @@ public class PantryFragment extends Fragment {
         // create recycler adapter
         IngredientAdapter adapter = new IngredientAdapter(appViewModel.getAllIngredients().getValue());
         recyclerView_ingredient.setAdapter(adapter);
-        recyclerView_ingredient.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        recyclerView_ingredient.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(
-                root.getContext(), DividerItemDecoration.VERTICAL);
-        recyclerView_ingredient.addItemDecoration(itemDecoration);
+        CustomizedView.setUpRecyclerView(root.getContext(), recyclerView_ingredient);
 
         appViewModel.getAllIngredients().observe(getViewLifecycleOwner(), adapter::updateIngredients);
 
